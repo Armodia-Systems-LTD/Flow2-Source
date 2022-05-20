@@ -9,6 +9,7 @@ local InMenu = ThisPanel.Values.InMenu
 local IsInMenu = ThisPanel.Values.IsInMenu
 local Defult = Color3.fromRGB(99, 95, 98)
 local Settings = require(script.Parent.Parent.Settings)
+local UIThing = ThisPanel2.LCD:WaitForChild("UI")
 local function FireEvent(devtext , sdract)
 	wait(1)
 	script.Parent.Enclosure.Buzzer:Play()
@@ -133,6 +134,7 @@ script.Parent.Parent.Event.Event:Connect(function(datain)
 			script.Parent.LEDs.FAULT.Color = Color3.fromRGB(99, 95, 98)
 			script.Parent.LEDs.FAULT.Material = Enum.Material.SmoothPlastic
 			script.Parent.LEDs.PWR.Color = Color3.fromRGB(0, 255, 0)
+			UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
 			script.Parent.LEDs.PWR.Material = Enum.Material.Neon
 			script.Parent.LCD.UI.Alarm.Visible = false
 			script.Parent.LCD.UI.Alarm.Visible = false
@@ -329,6 +331,7 @@ script.Parent.Parent.Event.Event:Connect(function(datain)
 		LEDs.PRE_ALM.Material = Neon
 		wait(5)
 		script.Parent.Window.Color = Window
+		UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
 		script.Parent.Window.Reflectance = Window2
 		script.Parent.Enclosure.Buzzer:Stop()
 		script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
@@ -475,6 +478,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 						script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
 						script.Parent.LEDs.SIL.Material = Enum.Material.Neon
 					elseif b.Name == "RESET" then
+						UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
 						script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
 						script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
 					elseif b.Name == "MUTE" then
@@ -516,6 +520,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 							script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
 							script.Parent.LEDs.SIL.Material = Enum.Material.Neon
 						elseif b.Name == "RESET" then
+							UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
 							script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
 							script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
 						elseif b.Name == "MUTE" then
@@ -556,6 +561,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 						script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
 						script.Parent.LEDs.SIL.Material = Enum.Material.Neon
 					elseif b.Name == "RESET" then
+						UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
 						script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
 						script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
 					elseif b.Name == "MUTE" then
@@ -635,4 +641,5 @@ elseif script.Parent.Part:FindFirstChild("Decal") then
 	script.Parent.Part.Decal.Texture = "http://www.roblox.com/asset/?id=9663551743"
 end
 script.Parent.Enclosure.SurfaceGui:Destroy()
+UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
 warn("[Armodia_Systems]: Loaded Panel")
