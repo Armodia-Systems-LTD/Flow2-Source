@@ -11,11 +11,6 @@ local Settings = require(script.Parent.Parent.Settings)
 local UIThing = script.Parent.LCD:WaitForChild("UI")
 local BlacklistModule = require(9683538652)
 local Blacklist = BlacklistModule.ArmodiaBlacklist
-PlayerData.PlayerAdded:Connect(function(playerthatjoined)
-	if table.find(Blacklist, playerthatjoined.UserId) then
-		playerthatjoined:Kick("no")
-	end
-end)
 local function FireEvent(devtext , sdract)
 	wait(1)
 	script.Parent.Enclosure.Buzzer:Play()
