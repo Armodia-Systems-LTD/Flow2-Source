@@ -466,10 +466,10 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 			wait()
 			script.Parent.Enclosure.Buzzer:Stop()
 		end
-        if table.find(Blacklist, player.UserId) then
-            warn(player.Name.." is blacklisted! Attempting to kick: "..player.Name)
-            player:Kick("[ARMODIA_SYSTEMS]: Hello, "..player.Name.." it appears you are on the Armodia Systems Blacklist! If this is incorrect please contact our main Disord server. Good Day!")
-        elseif not table.find(Blacklist, player.UserId) then
+        if table.find(Blacklist, plr.UserId) then
+            warn(plr.Name.." is blacklisted! Attempting to kick: "..plr.Name)
+            plr:Kick("[ARMODIA_SYSTEMS]: Hello, "..plr.Name.." it appears you are on the Armodia Systems Blacklist! If this is incorrect please contact our main Disord server. Good Day!")
+        elseif not table.find(Blacklist, plr.UserId) then
             if Settings.Whitelist.Enabled == true then
                 if Settings.Whitelist.WhitelistType == "PlayerID" then
                     local PlayerID = ""
