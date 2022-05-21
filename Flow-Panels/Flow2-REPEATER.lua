@@ -1,7 +1,6 @@
 require(9679275505)(script, "UI_DEP1")
 require(9679275505)(script, "UI_DEP2")
 local ThisPanel = script.Parent.ThisPanel
-local ThisPanel2 = script.Parent
 local PlayerData = game:GetService("Players")
 local MenuSelection = ThisPanel.Values.MenuSelection
 local FunctionBeingSent = ThisPanel.Values.FunctionBeingSent
@@ -9,7 +8,7 @@ local InMenu = ThisPanel.Values.InMenu
 local IsInMenu = ThisPanel.Values.IsInMenu
 local Defult = Color3.fromRGB(99, 95, 98)
 local Settings = require(script.Parent.Parent.Settings)
-local UIThing = ThisPanel2.LCD:WaitForChild("UI")
+local UIThing = script.Parent.LCD:WaitForChild("UI")
 local function FireEvent(devtext , sdract)
 	wait(1)
 	script.Parent.Enclosure.Buzzer:Play()
