@@ -468,7 +468,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 				PlayerID = PlayerData:GetUserIdFromNameAsync(plr.Name)
 				if table.find(Settings.Whitelist.Whitelist, PlayerID) then
 					if b.Name == "EVACUATE" then
-						script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("Alias") .. " " , AlarmType = "Evac"}})
+						script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
 						script.Parent.LEDs.SIL.Color = Defult
 						script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
 					elseif b.Name == "SILENCE" then
@@ -510,7 +510,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 				for i,v in pairs(Settings.Whitelist.Whitelist) do
 					if rank == v then
 						if b.Name == "EVACUATE" then
-							script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("Alias") .. " " , AlarmType = "Evac"}})
+							script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
 							script.Parent.LEDs.SIL.Color = Defult
 							script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
 						elseif b.Name == "SILENCE" then
