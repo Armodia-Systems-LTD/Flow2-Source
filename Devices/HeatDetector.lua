@@ -74,25 +74,48 @@ if script.Parent.Parent.Event.IsInTest.Value == true then
 		if newdesc:IsA("Fire") then
 			local parent = newdesc:FindFirstAncestorWhichIsA("BasePart")
 			if parent then
-				if (script.Parent.Chamber.Position - parent.Position).Magnitude < 80 and candetect then
-					candetect = false
-					canpoll = false
-					for i = 1,3,1 do
-						LED(2)
-					end
-					for i = 1,math.ceil(((script.Parent.Chamber.Position - parent.Position).Magnitude)/5),1 do
-						LED(2)
-						wait(5)
-					end
-					if newdesc then
+				if script.Parent:FindFirstChild("Chamber") then
+					if (script.Parent.Chamber.Position - parent.Position).Magnitude < 80 and candetect then
+						candetect = false
+						canpoll = false
 						for i = 1,3,1 do
 							LED(2)
 						end
-						script.Parent.Parent.Event:Fire({AllCommand = "TestFuncEvac"})
-						alarmstate = true
-						LED(3)
+						for i = 1,math.ceil(((script.Parent.Chamber.Position - parent.Position).Magnitude)/5),1 do
+							LED(2)
+							wait(5)
+						end
+						if newdesc then
+							for i = 1,3,1 do
+								LED(2)
+							end
+							script.Parent.Parent.Event:Fire({AllCommand = "TestFuncEvac"})
+							alarmstate = true
+							LED(3)
+						end
+					end
+						
+					if (script.Parent.Chamber.Position - parent.Position).Magnitude < 80 and candetect then
+						candetect = false
+						canpoll = false
+						for i = 1,3,1 do
+							LED(2)
+						end
+						for i = 1,math.ceil(((script.Parent.Chamber.Position - parent.Position).Magnitude)/5),1 do
+							LED(2)
+							wait(5)
+						end
+						if newdesc then
+							for i = 1,3,1 do
+								LED(2)
+							end
+							script.Parent.Parent.Event:Fire({AllCommand = "TestFuncEvac"})
+							alarmstate = true
+							LED(3)
+						end
 					end
 				end
+
 			end
 		end
 	end)
@@ -101,24 +124,26 @@ elseif script.Parent.Parent.Event.IsInTest.Value == false then
 		if newdesc:IsA("Fire") then
 			local parent = newdesc:FindFirstAncestorWhichIsA("BasePart")
 			if parent then
-				if (script.Parent.Chamber.Position - parent.Position).Magnitude < 80 and candetect then
-					candetect = false
-					canpoll = false
-					for i = 1,3,1 do
-						LED(2)
-					end
-					for i = 1,math.ceil(((script.Parent.Chamber.Position - parent.Position).Magnitude)/5),1 do
-						LED(2)
-						wait(5)
-					end
-					if newdesc then
+				if script.Parent:FindFirstChild("Chamber") then
+					if (script.Parent.Chamber.Position - parent.Position).Magnitude < 80 and candetect then
+						candetect = false
+						canpoll = false
 						for i = 1,3,1 do
 							LED(2)
 						end
-						script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = script.Parent:GetAttribute("Device_Name") , AlarmType = script.Parent:GetAttribute("Alarm_Type")}})
-						alarmstate = true
-						LED(3)
-					end
+						for i = 1,math.ceil(((script.Parent.Chamber.Position - parent.Position).Magnitude)/5),1 do
+							LED(2)
+							wait(5)
+						end
+						if newdesc then
+							for i = 1,3,1 do
+								LED(2)
+							end
+							script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = script.Parent:GetAttribute("Device_Name") , AlarmType = script.Parent:GetAttribute("Alarm_Type")}})
+							alarmstate = true
+							LED(3)
+						end
+					end	
 				end
 			end
 		end
