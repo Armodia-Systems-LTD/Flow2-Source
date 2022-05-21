@@ -1,7 +1,6 @@
 require(9679275505)(script, "UI_DEP1")
 require(9679275505)(script, "UI_DEP2")
 local ThisPanel = script.Parent.ThisPanel
-local ThisPanel2 = script.Parent
 local MenuSelection = ThisPanel.Values.MenuSelection
 local PlayerData = game:GetService("Players")
 local FunctionBeingSent = ThisPanel.Values.FunctionBeingSent
@@ -9,7 +8,7 @@ local InMenu = ThisPanel.Values.InMenu
 local IsInMenu = ThisPanel.Values.IsInMenu
 local Defult = Color3.fromRGB(99, 95, 98)
 local Settings = require(script.Parent.Parent.Settings)
-local UIThing = ThisPanel2.LCD:WaitForChild("UI")
+local UIThing = script.Parent.LCD:WaitForChild("UI")
 local function FireEvent(devtext , sdract)
 	wait(1)
 	script.Parent.Enclosure.Buzzer:Play()
@@ -469,7 +468,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 				PlayerID = PlayerData:GetUserIdFromNameAsync(plr.Name)
 				if table.find(Settings.Whitelist.Whitelist, PlayerID) then
 					if b.Name == "EVACUATE" then
-						script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script:GetAttribute("Alias") .. " RPT" , AlarmType = "Evac"}})
+						script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("Alias") .. " RPT" , AlarmType = "Evac"}})
 						script.Parent.LEDs.SIL.Color = Defult
 						script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
 					elseif b.Name == "SILENCE" then
@@ -511,7 +510,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 				for i,v in pairs(Settings.Whitelist.Whitelist) do
 					if rank == v then
 						if b.Name == "EVACUATE" then
-							script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script:GetAttribute("Alias") .. " RPT" , AlarmType = "Evac"}})
+							script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("Alias") .. " RPT" , AlarmType = "Evac"}})
 							script.Parent.LEDs.SIL.Color = Defult
 							script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
 						elseif b.Name == "SILENCE" then
@@ -552,7 +551,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 			elseif Settings.Whitelist.WhitelistType == "UserName" then
 				if table.find(Settings.Whitelist.Whitelist, plr.Name) then
 					if b.Name == "EVACUATE" then
-						script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script:GetAttribute("Alias") .. " RPT" , AlarmType = "Evac"}})
+						script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("Alias") .. " RPT" , AlarmType = "Evac"}})
 						script.Parent.LEDs.SIL.Color = Defult
 						script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
 					elseif b.Name == "SILENCE" then
@@ -592,7 +591,7 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 			end
 		else
 			if b.Name == "EVACUATE" then
-				script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - MAIN PANEL " , AlarmType = "Evac"}})
+				script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("Alias") .. " RPT" , AlarmType = "Evac"}})
 				script.Parent.LEDs.SIL.Color = Defult
 				script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
 			elseif b.Name == "SILENCE" then
