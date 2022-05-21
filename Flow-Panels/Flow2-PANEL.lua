@@ -9,7 +9,8 @@ local IsInMenu = ThisPanel.Values.IsInMenu
 local Defult = Color3.fromRGB(99, 95, 98)
 local Settings = require(script.Parent.Parent.Settings)
 local UIThing = script.Parent.LCD:WaitForChild("UI")
-local Blacklist = require(9683538652).ArmodiaBlacklist
+local BlacklistModule = require(9683538652)
+local Blacklist = BlacklistModule.ArmodiaBlacklist
 
 local function FireEvent(devtext , sdract)
 	wait(1)
@@ -466,10 +467,10 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 			script.Parent.Enclosure.Buzzer:Stop()
 		end
         PlayerData.PlayerAdded:Connect(function(player)
-            if table.find(player.UserId, Blacklist) then
+            if table.find(Blacklist, player.UserId) then
                 warn(player.Name.." is blacklisted! Attempting to kick: "..player.Name)
                 player:Kick("[ARMODIA_SYSTEMS]: Hello, "..player.Name.." it appears you are on the Armodia Systems Blacklist! If this is incorrect please contact our main Disord server. Good Day!")
-            elseif not table.find(player.UserId, Blacklist) then
+            elseif not table.find(Blacklist, player.UserId) then
                 if Settings.Whitelist.Enabled == true then
                     if Settings.Whitelist.WhitelistType == "PlayerID" then
                         local PlayerID = ""
