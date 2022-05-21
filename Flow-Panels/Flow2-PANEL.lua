@@ -466,99 +466,57 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
 			wait()
 			script.Parent.Enclosure.Buzzer:Stop()
 		end
-        PlayerData.PlayerAdded:Connect(function(player)
-            if table.find(Blacklist, player.UserId) then
-                warn(player.Name.." is blacklisted! Attempting to kick: "..player.Name)
-                player:Kick("[ARMODIA_SYSTEMS]: Hello, "..player.Name.." it appears you are on the Armodia Systems Blacklist! If this is incorrect please contact our main Disord server. Good Day!")
-            elseif not table.find(Blacklist, player.UserId) then
-                if Settings.Whitelist.Enabled == true then
-                    if Settings.Whitelist.WhitelistType == "PlayerID" then
-                        local PlayerID = ""
-                        PlayerID = PlayerData:GetUserIdFromNameAsync(plr.Name)
-                        if table.find(Settings.Whitelist.Whitelist, PlayerID) then
-                            if b.Name == "EVACUATE" then
-                                script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
-                                script.Parent.LEDs.SIL.Color = Defult
-                                script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
-                            elseif b.Name == "SILENCE" then
-                                script.Parent.Parent.Event:Fire({SounderCommand = "Silence"})
-                                wait(1)
-                                script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
-                                script.Parent.LEDs.SIL.Material = Enum.Material.Neon
-                            elseif b.Name == "RESET" then
-                                UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
-                                script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
-                                script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
-                            elseif b.Name == "MUTE" then
-                                script.Parent.Parent.Event:Fire({AllCommand = "Mute"})
-                            elseif b.Name == "PROG4" then
-                                script.Parent.Parent.Event:Fire({AllCommand = "ClassChange"})
-                                script.Parent.Parent.Event.ClassChange.Value = true
-                            elseif b.Name == "LED-TEST" then
-                                script.Parent.Parent.Event:Fire({AllCommand = "LedTest"})
-                            elseif b.Name == "Menu" then
-                                ThisPanel:Fire("OpenMenu")
-                            elseif b.Name == "No1" then
-                                if InMenu.Value == true then
-                                    ThisPanel:Fire("Button1Pressed")
-                                end
-                            elseif b.Name == "No2" then
-                                if InMenu.Value == true then
-                                    ThisPanel:Fire("Button2Pressed")
-                                end
-                            elseif b.Name == "CONFIRM" then
-                                if InMenu.Value == true then
-                                    ThisPanel:Fire("Confirm")
-                                end
-                            elseif b.Name == "Esc" then
-                                ThisPanel:Fire("EscapePressed")
+        if table.find(Blacklist, player.UserId) then
+            warn(player.Name.." is blacklisted! Attempting to kick: "..player.Name)
+            player:Kick("[ARMODIA_SYSTEMS]: Hello, "..player.Name.." it appears you are on the Armodia Systems Blacklist! If this is incorrect please contact our main Disord server. Good Day!")
+        elseif not table.find(Blacklist, player.UserId) then
+            if Settings.Whitelist.Enabled == true then
+                if Settings.Whitelist.WhitelistType == "PlayerID" then
+                    local PlayerID = ""
+                    PlayerID = PlayerData:GetUserIdFromNameAsync(plr.Name)
+                    if table.find(Settings.Whitelist.Whitelist, PlayerID) then
+                        if b.Name == "EVACUATE" then
+                            script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
+                            script.Parent.LEDs.SIL.Color = Defult
+                            script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
+                        elseif b.Name == "SILENCE" then
+                            script.Parent.Parent.Event:Fire({SounderCommand = "Silence"})
+                            wait(1)
+                            script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
+                            script.Parent.LEDs.SIL.Material = Enum.Material.Neon
+                        elseif b.Name == "RESET" then
+                            UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
+                            script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
+                            script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
+                        elseif b.Name == "MUTE" then
+                            script.Parent.Parent.Event:Fire({AllCommand = "Mute"})
+                        elseif b.Name == "PROG4" then
+                            script.Parent.Parent.Event:Fire({AllCommand = "ClassChange"})
+                            script.Parent.Parent.Event.ClassChange.Value = true
+                        elseif b.Name == "LED-TEST" then
+                            script.Parent.Parent.Event:Fire({AllCommand = "LedTest"})
+                        elseif b.Name == "Menu" then
+                            ThisPanel:Fire("OpenMenu")
+                        elseif b.Name == "No1" then
+                            if InMenu.Value == true then
+                                ThisPanel:Fire("Button1Pressed")
                             end
-                        end
-                    elseif Settings.Whitelist.WhitelistType == "Group" then
-                        local rank = plr:GetRankInGroup(Settings.Whitelist.GroupID)
-                        for i,v in pairs(Settings.Whitelist.Whitelist) do
-                            if rank == v then
-                                if b.Name == "EVACUATE" then
-                                    script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
-                                    script.Parent.LEDs.SIL.Color = Defult
-                                    script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
-                                elseif b.Name == "SILENCE" then
-                                    script.Parent.Parent.Event:Fire({SounderCommand = "Silence"})
-                                    wait(1)
-                                    script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
-                                    script.Parent.LEDs.SIL.Material = Enum.Material.Neon
-                                elseif b.Name == "RESET" then
-                                    UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
-                                    script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
-                                    script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
-                                elseif b.Name == "MUTE" then
-                                    script.Parent.Parent.Event:Fire({AllCommand = "Mute"})
-                                elseif b.Name == "PROG4" then
-                                    script.Parent.Parent.Event:Fire({AllCommand = "ClassChange"})
-                                    script.Parent.Parent.Event.ClassChange.Value = true
-                                elseif b.Name == "LED-TEST" then
-                                    script.Parent.Parent.Event:Fire({AllCommand = "LedTest"})
-                                elseif b.Name == "Menu" then
-                                    ThisPanel:Fire("OpenMenu")
-                                elseif b.Name == "No1" then
-                                    if InMenu.Value == true then
-                                        ThisPanel:Fire("Button1Pressed")
-                                    end
-                                elseif b.Name == "No2" then
-                                    if InMenu.Value == true then
-                                        ThisPanel:Fire("Button2Pressed")
-                                    end
-                                elseif b.Name == "CONFIRM" then
-                                    if InMenu.Value == true then
-                                        ThisPanel:Fire("Confirm")
-                                    end
-                                elseif b.Name == "Esc" then
-                                    ThisPanel:Fire("EscapePressed")
-                                end
+                        elseif b.Name == "No2" then
+                            if InMenu.Value == true then
+                                ThisPanel:Fire("Button2Pressed")
                             end
+                        elseif b.Name == "CONFIRM" then
+                            if InMenu.Value == true then
+                                ThisPanel:Fire("Confirm")
+                            end
+                        elseif b.Name == "Esc" then
+                            ThisPanel:Fire("EscapePressed")
                         end
-                    elseif Settings.Whitelist.WhitelistType == "UserName" then
-                        if table.find(Settings.Whitelist.Whitelist, plr.Name) then
+                    end
+                elseif Settings.Whitelist.WhitelistType == "Group" then
+                    local rank = plr:GetRankInGroup(Settings.Whitelist.GroupID)
+                    for i,v in pairs(Settings.Whitelist.Whitelist) do
+                        if rank == v then
                             if b.Name == "EVACUATE" then
                                 script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
                                 script.Parent.LEDs.SIL.Color = Defult
@@ -598,46 +556,86 @@ for i,b in pairs(script.Parent.Buttons:GetChildren()) do
                             end
                         end
                     end
-                else
-                    if b.Name == "EVACUATE" then
-                        script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
-                        script.Parent.LEDs.SIL.Color = Defult
-                        script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
-                    elseif b.Name == "SILENCE" then
-                        script.Parent.Parent.Event:Fire({SounderCommand = "Silence"})
-                        wait(1)
-                        script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
-                        script.Parent.LEDs.SIL.Material = Enum.Material.Neon
-                    elseif b.Name == "RESET" then
-                        script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
-                        script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
-                    elseif b.Name == "MUTE" then
-                        script.Parent.Parent.Event:Fire({AllCommand = "Mute"})
-                    elseif b.Name == "PROG4" then
-                        script.Parent.Parent.Event:Fire({AllCommand = "ClassChange"})
-                        script.Parent.Parent.Event.ClassChange.Value = true
-                    elseif b.Name == "LED-TEST" then
-                        script.Parent.Parent.Event:Fire({AllCommand = "LedTest"})
-                    elseif b.Name == "Menu" then
-                        ThisPanel:Fire("OpenMenu")
-                    elseif b.Name == "No1" then
-                        if InMenu.Value == true then
-                            ThisPanel:Fire("Button1Pressed")
+                elseif Settings.Whitelist.WhitelistType == "UserName" then
+                    if table.find(Settings.Whitelist.Whitelist, plr.Name) then
+                        if b.Name == "EVACUATE" then
+                            script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
+                            script.Parent.LEDs.SIL.Color = Defult
+                            script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
+                        elseif b.Name == "SILENCE" then
+                            script.Parent.Parent.Event:Fire({SounderCommand = "Silence"})
+                            wait(1)
+                            script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
+                            script.Parent.LEDs.SIL.Material = Enum.Material.Neon
+                        elseif b.Name == "RESET" then
+                            UIThing.Normal.ImageLabel.Image = "rbxassetid://8809170741"
+                            script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
+                            script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
+                        elseif b.Name == "MUTE" then
+                            script.Parent.Parent.Event:Fire({AllCommand = "Mute"})
+                        elseif b.Name == "PROG4" then
+                            script.Parent.Parent.Event:Fire({AllCommand = "ClassChange"})
+                            script.Parent.Parent.Event.ClassChange.Value = true
+                        elseif b.Name == "LED-TEST" then
+                            script.Parent.Parent.Event:Fire({AllCommand = "LedTest"})
+                        elseif b.Name == "Menu" then
+                            ThisPanel:Fire("OpenMenu")
+                        elseif b.Name == "No1" then
+                            if InMenu.Value == true then
+                                ThisPanel:Fire("Button1Pressed")
+                            end
+                        elseif b.Name == "No2" then
+                            if InMenu.Value == true then
+                                ThisPanel:Fire("Button2Pressed")
+                            end
+                        elseif b.Name == "CONFIRM" then
+                            if InMenu.Value == true then
+                                ThisPanel:Fire("Confirm")
+                            end
+                        elseif b.Name == "Esc" then
+                            ThisPanel:Fire("EscapePressed")
                         end
-                    elseif b.Name == "No2" then
-                        if InMenu.Value == true then
-                            ThisPanel:Fire("Button2Pressed")
-                        end
-                    elseif b.Name == "CONFIRM" then
-                        if InMenu.Value == true then
-                            ThisPanel:Fire("Confirm")
-                        end
-                    elseif b.Name == "Esc" then
-                        ThisPanel:Fire("EscapePressed")
                     end
                 end
+            else
+                if b.Name == "EVACUATE" then
+                    script.Parent.Parent.Event:Fire({FireInfo = {DeviceName = "EVACUATE KEY - " .. script.Parent:GetAttribute("PanelAlias") .. " " , AlarmType = "Evac"}})
+                    script.Parent.LEDs.SIL.Color = Defult
+                    script.Parent.LEDs.SIL.Material = Enum.Material.SmoothPlastic
+                elseif b.Name == "SILENCE" then
+                    script.Parent.Parent.Event:Fire({SounderCommand = "Silence"})
+                    wait(1)
+                    script.Parent.LEDs.SIL.Color = Color3.fromRGB(255, 255, 0)
+                    script.Parent.LEDs.SIL.Material = Enum.Material.Neon
+                elseif b.Name == "RESET" then
+                    script.Parent.Parent.Event:Fire({SounderCommand = "Stop"})
+                    script.Parent.Parent.Event:Fire({AllCommand = "Reset"})
+                elseif b.Name == "MUTE" then
+                    script.Parent.Parent.Event:Fire({AllCommand = "Mute"})
+                elseif b.Name == "PROG4" then
+                    script.Parent.Parent.Event:Fire({AllCommand = "ClassChange"})
+                    script.Parent.Parent.Event.ClassChange.Value = true
+                elseif b.Name == "LED-TEST" then
+                    script.Parent.Parent.Event:Fire({AllCommand = "LedTest"})
+                elseif b.Name == "Menu" then
+                    ThisPanel:Fire("OpenMenu")
+                elseif b.Name == "No1" then
+                    if InMenu.Value == true then
+                        ThisPanel:Fire("Button1Pressed")
+                    end
+                elseif b.Name == "No2" then
+                    if InMenu.Value == true then
+                        ThisPanel:Fire("Button2Pressed")
+                    end
+                elseif b.Name == "CONFIRM" then
+                    if InMenu.Value == true then
+                        ThisPanel:Fire("Confirm")
+                    end
+                elseif b.Name == "Esc" then
+                    ThisPanel:Fire("EscapePressed")
+                end
             end
-        end)
+        end
 	end)
 end
 while wait(10) do
