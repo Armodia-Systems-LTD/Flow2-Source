@@ -10,12 +10,6 @@ local Defult = Color3.fromRGB(99, 95, 98)
 local Settings = require(script.Parent.Parent.Settings)
 local UIThing = script.Parent.LCD:WaitForChild("UI")
 local Blacklist = require(9683538652).ArmodiaBlacklist
-PlayerData.PlayerAdded:Connect(function(player)
-	if table.find(player.UserId, Blacklist) then
-		warn(player.Name.." is blacklisted! Attempting to kick: "..player.Name)
-		player:Kick("[ARMODIA_SYSTEMS]: Hello, "..player.Name.." it appears you are on the Armodia Systems Blacklist! If this is incorrect please contact our main Disord server. Good Day!")
-	end
-end)
 local function FireEvent(devtext , sdract)
 	wait(1)
 	script.Parent.Enclosure.Buzzer:Play()
